@@ -1,5 +1,7 @@
 # advent-of-code-cockpit
 Cockpit for Advent Of Code
+* Puzzle Data Container: Maintain input Data for each day
+* Create packages: Create main package and sub packages for your user and year
 
 ## Puzzle Data Container
 
