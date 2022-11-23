@@ -7,7 +7,8 @@ Cockpit for Advent Of Code
 
 Report ZADVENTOFCODE_DATA_COCKPIT
 
-![image](https://user-images.githubusercontent.com/75187288/203642830-ba51d5d0-e0cf-412f-8e15-80f23abab942.png)
+![image](https://user-images.githubusercontent.com/75187288/203648684-07c3ae6b-ce7c-4c00-9712-cd837891a8e0.png)
+
 
 ## create sub packages
 
