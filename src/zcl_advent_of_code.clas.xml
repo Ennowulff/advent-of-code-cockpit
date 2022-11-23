@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_ADVENT_OF_CODE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Advent of Code - general helper methods</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_PUZZLE_INPUT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get puzzle input from database</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_PUZZLE_INPUT_WEB</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get puzzle input from web (does not work)</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>STRING_TO_TABLE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>transform string to table data</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PUZZLE_INPUT</CMPNAME>
+     <SCONAME>USER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>User Name in User Master Record</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PUZZLE_INPUT</CMPNAME>
+     <SCONAME>YEAR</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Start year</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>GET_PUZZLE_INPUT_WEB</CMPNAME>
+     <SCONAME>DATA</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table of Strings</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>PROVE_VALUE_FROM_CLIPBOARD</CMPNAME>
+     <SCONAME>CODE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table of Strings</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>STRING_TO_TABLE</CMPNAME>
+     <SCONAME>TABLE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Table of Strings</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
