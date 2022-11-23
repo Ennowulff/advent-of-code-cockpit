@@ -25,9 +25,16 @@ public section.
       !INPUT type STRING
     returning
       value(TABLE) type STRING_TABLE .
-  class-methods PROVE_VALUE_FROM_CLIPBOARD
+  class-methods VALUE_DECLARATION
+    importing
+      !INPUT type STRING
     returning
       value(CODE) type STRING_TABLE .
+  class-methods TABLE_TO_STRING
+    importing
+      !INPUT type STRING_TABLE
+    returning
+      value(STRING) type STRING .
 protected section.
 private section.
 ENDCLASS.
@@ -113,25 +120,30 @@ CLASS ZCL_ADVENT_OF_CODE IMPLEMENTATION.
   ENDMETHOD.
 
 
-  METHOD prove_value_from_clipboard.
-
-    DATA content  TYPE string_table.
-
-    cl_gui_frontend_services=>clipboard_import(
-      IMPORTING
-        data                 = content
-        length               = DATA(length) ).
-
-    CHECK length > 0.
-
-    LOOP AT content INTO DATA(line).
-
-    ENDLOOP.
-
+  METHOD string_to_table.
+    SPLIT input AT cl_abap_char_utilities=>cr_lf INTO TABLE table.
   ENDMETHOD.
 
 
-  METHOD string_to_table.
-    SPLIT input AT cl_abap_char_utilities=>cr_lf INTO TABLE table.
+  METHOD table_to_string.
+    LOOP AT input INTO DATA(line).
+      string = string && line && cl_abap_char_utilities=>cr_lf.
+    ENDLOOP.
+  ENDMETHOD.
+
+
+  METHOD value_declaration.
+
+    CHECK input IS NOT INITIAL.
+
+    DATA(content) = string_to_table( input ).
+
+    code = VALUE #( ( `DATA(input) = VALUE string_table(` ) ).
+
+    LOOP AT content INTO DATA(line).
+      APPEND |  ( '{ line }' )| to code.
+    ENDLOOP.
+    APPEND '  ).' TO code.
+
   ENDMETHOD.
 ENDCLASS.

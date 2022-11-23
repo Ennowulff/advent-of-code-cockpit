@@ -26,6 +26,7 @@ CLASS main DEFINITION.
     DATA main_container TYPE REF TO cl_gui_container.
     DATA day_container TYPE REF TO cl_gui_container.
     DATA pi_container TYPE REF TO cl_gui_container.
+    DATA value_container TYPE REF TO cl_gui_container.
 
     DATA days_grid TYPE REF TO cl_salv_table.
     DATA year TYPE jahr1.
@@ -39,7 +40,8 @@ CLASS main DEFINITION.
       END OF _entry,
       _list TYPE STANDARD TABLE OF _entry WITH DEFAULT KEY.
     DATA days TYPE _list.
-    DATA text_edit TYPE REF TO cl_gui_textedit.
+    DATA pi_text_edit TYPE REF TO cl_gui_textedit.
+    DATA value_text_edit TYPE REF TO cl_gui_textedit.
     DATA current_entry TYPE i.
     DATA current_column TYPE string.
 
@@ -90,12 +92,13 @@ CLASS main IMPLEMENTATION.
 
   METHOD display.
 
-    DATA(splitter) = NEW cl_gui_splitter_container( parent = main_container rows = 1 columns = 2 ).
+    DATA(splitter) = NEW cl_gui_splitter_container( parent = main_container rows = 1 columns = 3 ).
     splitter->set_column_width(
         id                = 1
         width             = 50 ).
     day_container = splitter->get_container( row = 1 column = 1 ).
     pi_container = splitter->get_container( row = 1 column = 2 ).
+    value_container = splitter->get_container( row = 1 column = 3 ).
 
     create_grid( ).
     create_text( ).
@@ -104,7 +107,9 @@ CLASS main IMPLEMENTATION.
 
   METHOD create_text.
 
-    text_edit = NEW #( parent = pi_container ).
+    pi_text_edit = NEW #( parent = pi_container ).
+    value_text_edit = NEW #( parent = value_container ).
+    value_text_edit->set_readonly_mode( 1 ).
 
   ENDMETHOD.
 
@@ -152,9 +157,12 @@ CLASS main IMPLEMENTATION.
         entry = days[ day = row ]-input3.
     ENDCASE.
 
-    text_edit->set_status_text( |Day { row }, { column }| ).
+    pi_text_edit->set_status_text( |Day { row }, { column }| ).
+    value_text_edit->set_status_text( |Day { row }, { column }| ).
 
-    text_edit->set_textstream( text = entry ).
+    pi_text_edit->set_textstream( text = entry ).
+    value_text_edit->set_textstream( text = zcl_advent_of_code=>table_to_String( zcl_advent_of_code=>value_declaration( entry ) ) ).
+
 
   ENDMETHOD.
 
@@ -164,7 +172,7 @@ CLASS main IMPLEMENTATION.
 
     CHECK current_entry > 0.
 
-    text_edit->get_textstream(
+    pi_text_edit->get_textstream(
       EXPORTING
         only_when_modified     = 1
       IMPORTING
