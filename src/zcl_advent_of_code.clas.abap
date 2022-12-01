@@ -7,7 +7,7 @@ public section.
 
   class-methods GET_PUZZLE_INPUT
     importing
-      !YEAR type JAHR1
+        !year       TYPE gjahr
       !USER type XUBNAME default SY-UNAME
       !DAY type I
       !PART type I

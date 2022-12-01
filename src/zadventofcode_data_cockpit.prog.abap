@@ -8,7 +8,7 @@ REPORT zadventofcode_data_cockpit.
 DATA no_input TYPE c LENGTH 1.
 
 SELECTION-SCREEN COMMENT /1(50) TEXT-in1.
-PARAMETERS p_year TYPE jahr1 DEFAULT sy-datum(4) MODIF ID dis.
+PARAMETERS p_year TYPE gjahr DEFAULT sy-datum(4) MODIF ID dis.
 PARAMETERS p_user TYPE sy-uname DEFAULT sy-uname MODIF ID dis.
 
 
@@ -20,7 +20,7 @@ CLASS main DEFINITION.
     METHODS load
       IMPORTING
         user TYPE syuname
-        year TYPE jahr1.
+        year TYPE gjahr.
 
   PROTECTED SECTION.
     DATA main_container TYPE REF TO cl_gui_container.
@@ -29,7 +29,7 @@ CLASS main DEFINITION.
     DATA value_container TYPE REF TO cl_gui_container.
 
     DATA days_grid TYPE REF TO cl_salv_table.
-    DATA year TYPE jahr1.
+    DATA year TYPE gjahr.
     DATA user TYPE syuname.
     TYPES:
       BEGIN OF _entry,
