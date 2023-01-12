@@ -8,7 +8,7 @@ REPORT zadventofcode_data_cockpit.
 DATA no_input TYPE c LENGTH 1.
 
 SELECTION-SCREEN COMMENT /1(50) TEXT-in1.
-PARAMETERS p_year TYPE gjahr DEFAULT sy-datum(4) MODIF ID dis.
+PARAMETERS p_year TYPE jahr1 DEFAULT sy-datum(4) MODIF ID dis.
 PARAMETERS p_user TYPE sy-uname DEFAULT sy-uname MODIF ID dis.
 
 
@@ -20,7 +20,7 @@ CLASS main DEFINITION.
     METHODS load
       IMPORTING
         user TYPE syuname
-        year TYPE gjahr.
+        year TYPE jahr1.
 
   PROTECTED SECTION.
     DATA main_container TYPE REF TO cl_gui_container.
@@ -29,7 +29,7 @@ CLASS main DEFINITION.
     DATA value_container TYPE REF TO cl_gui_container.
 
     DATA days_grid TYPE REF TO cl_salv_table.
-    DATA year TYPE gjahr.
+    DATA year TYPE jahr1.
     DATA user TYPE syuname.
     TYPES:
       BEGIN OF _entry,
@@ -161,7 +161,7 @@ CLASS main IMPLEMENTATION.
     value_text_edit->set_status_text( |Day { row }, { column }| ).
 
     pi_text_edit->set_textstream( text = entry ).
-    value_text_edit->set_textstream( text = zcl_advent_of_code=>table_to_String( zcl_advent_of_code=>value_declaration( entry ) ) ).
+    value_text_edit->set_textstream( text = zcl_advent_of_code=>table_to_string( zcl_advent_of_code=>value_declaration( entry ) ) ).
 
 
   ENDMETHOD.
@@ -200,6 +200,8 @@ CLASS main IMPLEMENTATION.
       IF sy-subrc = 0.
         MESSAGE |puzzle input saved| TYPE 'S'.
       ENDIF.
+
+      days_grid->refresh( s_stable = VALUE #( row = abap_true col = abap_true ) ).
     ENDIF.
 
   ENDMETHOD.
